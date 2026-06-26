@@ -21,3 +21,4 @@ Method of cloaning
 * Click on project from version control
 * Then paste the URL
 * Then click clone
+* The project will automatically open
