@@ -1,7 +1,7 @@
 
 # E-HealthCare Management
 
-This is our plan for building a virtual doctor app. The idea is simple. A patient describes their symptoms, we match them to a doctor, they chat, and the patient either gets a prescription or gets admitted to a hospital bed.
+This is our plan for building a virtual doctor app. The idea is simple. A patient describes their symptoms, we match them to a doctor, they chat, and the patient either gets a prescription or gets admitted to a hospital bed or get transfared to another hospital (hospital)...{under fixing from UI}.
 
 We are building it with JavaFX for the screens, JDBC as the connector, and MySQL through XAMPP for the database.
 
