@@ -15,3 +15,10 @@ This application would be of great help for issues like the common cold, fever, 
 * Web UI*
 * Hospital Registration*
 * Database to keep track of beds and patients*
+
+Method of cloaning
+* Click on file 
+* Click on project from version control
+* Then paste the URL
+* Then click clone
+* The project will automatically open
