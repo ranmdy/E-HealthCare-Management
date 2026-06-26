@@ -12,6 +12,6 @@ This application would be of great help for issues like the common cold, fever, 
 
 * Doctor Registration
 * Patient Registration
-* Web UI
-* Hospital Registration
+* Web UI*
+* Hospital Registration*
 * Database to keep track of beds and patients*
