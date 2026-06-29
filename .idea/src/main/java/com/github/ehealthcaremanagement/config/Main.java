@@ -11,17 +11,18 @@ public class Main {
             Connection conn = DBConnectionConfig.getConnection();
 
             if (conn != null && !conn.isClosed()) {
-                System.out.println("✅ Connection successful!");
+                System.out.println("Connection successful!");
                 conn.close(); // Always close when done
             } else {
-                System.out.println("❌ Connection failed.");
+                System.out.println("Connection failed.");
             }
 
         } catch (Exception e) {
-            System.out.println("❌ Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 }
+
 
 
