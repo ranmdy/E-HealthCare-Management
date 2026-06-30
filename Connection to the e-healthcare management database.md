@@ -8,7 +8,9 @@ Setting up SSH key
 
 2. The host invites them invite them via the Tailscale admin console.
 
-- The invite link → https://login.tailscale.com/admin/invite/Zw2UeXFpBgiq2xLb9xsS11  
+- The invite link → https://login.tailscale.com/admin/invite/Zw2UeXFpBgiq2xLb9xsS11
+
+- U might need to use a VPN to access the link on your browser as it is blocked from our current location (Use Canada) 
 
 Now they’re on the same private network.
 
