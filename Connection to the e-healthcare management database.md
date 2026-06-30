@@ -6,11 +6,15 @@ Setting up SSH key
 
 1. Each collaborator installs Tailscale on their laptop.
 
-2. The host invites them invite them via the Tailscale admin console.
+- You might need to use a VPN to be able to visit Tailscale webpage to install Tailscale
+
+2. Setup an account on Tailscale with your Email   
+
+3. The host invites them invite them via the Tailscale admin console.
 
 - The invite link → https://login.tailscale.com/admin/invite/Zw2UeXFpBgiq2xLb9xsS11
 
-- U might need to use a VPN to access the link on your browser as it is blocked from our current location (Use Canada) 
+- You might need to use a VPN to access the link on your browser as it is blocked from our current location (Use Canada) 
 
 Now they’re on the same private network.
 
