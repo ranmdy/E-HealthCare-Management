@@ -112,6 +112,6 @@ N:B :
 
 But before collaborators can successfullt visit http://localhost:8080/phpmyadmin, the host (Abdussalam) will have to open XAMPP Control panel and run Apache to serve phpMyAdmin web interface and MySQL to power the database the collaborators are connecting to.
 
-This-ssh -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.75.93 will have to be run on powershell and left open on powershell before they run their IntelliJ IDEA code everytime the collaborators want to connect.
+This-ssh -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.75.93 will have to be run on powershell and left open on powershell before they run their IntelliJ IDEA code and phpMyAdmin everytime the collaborators want to connect.
 
 ---
