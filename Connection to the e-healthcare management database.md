@@ -8,7 +8,7 @@ Setting up SSH key
 
 - You might need to use a VPN to be able to visit Tailscale webpage to install Tailscale
 
-2. Setup an account on Tailscale with your Email   
+2. Setup an account on Tailscale with your Email
 
 3. The host invites them invite them via the Tailscale admin console.
 
