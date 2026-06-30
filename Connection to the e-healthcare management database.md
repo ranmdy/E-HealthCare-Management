@@ -12,25 +12,7 @@ Setting up SSH key
 
 Now they’re on the same private network.
 
-🔧 Step 2: Each collaborator generates their own key pair
-
-1. On their own laptop, they run on powershell:
-
-ssh-keygen -t rsa -b 4096 -C "your_email@egmail.com"
-
-2. When prompted for a file location, press Enter (default: C:\Users\<YourWindowsUsername>\.ssh\id_rsa).
-
-3. Optionally set a passphrase (adds extra security but not compulsory) or just press enter when asked for a passphrase.
-
-- your_email@gmail.com → Use your email
-
-This creates:
-
-Private key → ~/.ssh/id_rsa (keep secret).
-
-Public key → ~/.ssh/id_rsa.pub (send to you, the host).
-
-🔧 Step 3: Enable OpenSSH Server on Windows 11
+🔧 Step 2 : Enable OpenSSH Server on Windows 11
 
 1. Press Win + I → open Settings.
 
@@ -42,7 +24,7 @@ Public key → ~/.ssh/id_rsa.pub (send to you, the host).
 
 👉 Now your Windows machine can initiate SSH connections.
 
-🔧 Step 4: Confirm SSH is Running
+🔧 Step 3: Confirm SSH is Running
 
 1. Open PowerShell and run:
 
@@ -50,23 +32,13 @@ Get-Service sshd
 
 It should show Running.
 
-🔧 Step 5: Collect public keys
-Each collaborator sends the host(Abdussalam) their public key file (id_rsa.pub).
-Example contents look like(e.g):
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ... your_email@gmail.com
+🔧 Step 4 : Collaborators connect using SSH tunneling
 
-🔧 Step 6: The hosts(Abdussalam) adds the Public Keys to Authorized Keys
+1. Each collaborator connects buy running this on powershell:
 
-🔧 Step 7: Distribute Private Keys
-Each collaborator keeps their private key (id_rsa) on their own machine.
- load it into an SSH agent by running this on powershell:
- 
-ssh-add ~/.ssh/id_rsa
+ssh -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.75.93
 
-🔧 Step 8: Collaborators connect with their own key
-Each collaborator uses their private key to connect buy running this on powershell:
-
-ssh -i ~/.ssh/id_rsa -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.75.93
+2. When prompted for password insert "Emperor"
 
 - 8080 → local port on collaborator’s machine. This forwards local port 8080 to the remote machine’s web server (port 80)).
 
@@ -83,6 +55,8 @@ ssh -i ~/.ssh/id_rsa -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.
 - lukman → hosts Windows account name.
 
 - 100.127.75.93 → hosts tailscale IP
+
+- Emperor → hosts password
 
 🔧 Step 5: Connect via JDBC in IntelliJ
 
@@ -138,6 +112,6 @@ N:B :
 
 But before collaborators can successfullt visit http://localhost:8080/phpmyadmin, the host (Abdussalam) will have to open XAMPP Control panel and run Apache to serve phpMyAdmin web interface and MySQL to power the database the collaborators are connecting to.
 
-This-ssh -i ~/.ssh/id_rsa -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.75.93 will have to be run on powershell and left open on powershell before they run their IntelliJ IDEA code everytime the collaborators want to connect.
+This-ssh -L 8080:localhost:80 -L 3307:localhost:3306 lukman@100.127.75.93 will have to be run on powershell and left open on powershell before they run their IntelliJ IDEA code everytime the collaborators want to connect.
 
 ---
