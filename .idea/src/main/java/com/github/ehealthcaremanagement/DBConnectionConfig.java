@@ -1,4 +1,4 @@
-package com.github.ehealthcaremanagement.config;
+package com.github.ehealthcaremanagement;
 
 import java.io.IOException;
 import java.io.InputStream;
