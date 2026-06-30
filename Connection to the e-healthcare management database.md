@@ -20,7 +20,7 @@ ssh-keygen -t rsa -b 4096 -C "your_email@egmail.com"
 
 2. When prompted for a file location, press Enter (default: C:\Users\<YourWindowsUsername>\.ssh\id_rsa).
 
-3. Optionally set a passphrase (adds extra security) or just press enter.
+3. Optionally set a passphrase (adds extra security but not compulsory) or just press enter.
 
 - your_email@gmail.com → Use your email
 
