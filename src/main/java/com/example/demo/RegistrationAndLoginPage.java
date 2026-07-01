@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -277,6 +279,20 @@ public class RegistrationAndLoginPage extends Application {
         return VALID_NIGERIAN_PREFIXES.contains(operatorPrefix);
     }
 
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hash) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException | java.io.UnsupportedEncodingException e) {
+            throw new RuntimeException("Error hashing password", e);
+        }
+    }
+
     private String sanitizeToNigerianDatabaseFormat(String phone) {
         String cleanPhone = phone.replaceAll("[\\s\\-\\(\\)]", "");
         if (cleanPhone.startsWith("0")) return "+234" + cleanPhone.substring(1);
@@ -422,7 +438,7 @@ public class RegistrationAndLoginPage extends Application {
             preparedStatement.setString(1, email);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    if (resultSet.getString("password").equals(password)) {
+                    if (resultSet.getString("password").equals(hashPassword(password))) {
                         showAlert(Alert.AlertType.INFORMATION, "Login Success", "Welcome back, " + resultSet.getString("full_name") + "!");
                     } else {
                         showAlert(Alert.AlertType.ERROR, "Login Failure", "Incorrect password. Please try again.");
@@ -455,7 +471,7 @@ public class RegistrationAndLoginPage extends Application {
             preparedStatement.setString(1, email);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    if (resultSet.getString("password").equals(password)) {
+                    if (resultSet.getString("password").equals(hashPassword(password))) {
                         showAlert(Alert.AlertType.INFORMATION, "Login Success", "Welcome back, Dr. " + resultSet.getString("full_name") + "!");
                     } else {
                         showAlert(Alert.AlertType.ERROR, "Login Failure", "Incorrect password. Please try again.");
@@ -488,7 +504,7 @@ public class RegistrationAndLoginPage extends Application {
             preparedStatement.setString(1, email);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    if (resultSet.getString("password").equals(password)) {
+                    if (resultSet.getString("password").equals(hashPassword(password))) {
                         showAlert(Alert.AlertType.INFORMATION, "Login Success", "Welcome back, Admin for " + resultSet.getString("hospital_name") + "!");
                     } else {
                         showAlert(Alert.AlertType.ERROR, "Login Failure", "Incorrect password. Please try again.");
@@ -554,7 +570,7 @@ public class RegistrationAndLoginPage extends Application {
             preparedStatement.setString(2, dob);
             preparedStatement.setString(3, sanitizeToNigerianDatabaseFormat(contact));
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, password);
+            preparedStatement.setString(5, hashPassword(password));
 
             if (preparedStatement.executeUpdate() > 0) {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Account created successfully for " + fullName + "!");
@@ -621,7 +637,7 @@ public class RegistrationAndLoginPage extends Application {
             preparedStatement.setString(3, specialty);
             preparedStatement.setString(4, category);
             preparedStatement.setString(5, email);
-            preparedStatement.setString(6, password);
+            preparedStatement.setString(6, hashPassword(password));
 
             if (preparedStatement.executeUpdate() > 0) {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Doctor account created successfully!");
@@ -677,7 +693,7 @@ public class RegistrationAndLoginPage extends Application {
             preparedStatement.setString(2, branchLocation);
             preparedStatement.setString(3, adminId);
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, password);
+            preparedStatement.setString(5, hashPassword(password));
 
             if (preparedStatement.executeUpdate() > 0) {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Hospital account created successfully!");
